@@ -532,70 +532,7 @@
       color: var(--glow);
     }
 
-    /* ── FOOTER ─────────────────────────────────────── */
-
-footer {
-  position: relative;
-  z-index: 1;
-
-  padding: 2.8rem 3.2rem;
-
-  border-top: 1px solid rgba(61,214,224,0.05);
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  font-weight: 300;
-  color: rgba(232,242,255,0.45);
-  letter-spacing: 0.06em;
-}
-
-.footer-left {
-  display: flex;
-  flex-direction: column;
-  gap: .4rem;
-}
-
-.footer-left span:last-child {
-  color: rgba(232,242,255,0.22);
-}
-
-.footer-socials {
-  display: flex;
-  gap: 1.3rem;
-  flex-wrap: wrap;
-}
-
-.footer-socials a,
-.footer-right a {
-  color: rgba(232,242,255,0.45);
-  text-decoration: none;
-  transition: color .25s ease;
-}
-
-.footer-socials a:hover,
-.footer-right a:hover {
-  color: var(--glow);
-}
-
-@media (max-width:768px){
-
-  footer{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .footer-socials{
-    justify-content:center;
-  }
-
-}
-
+    
     /* ── REVEAL ─────────────────────────────────────── */
     .reveal {
       opacity: 0;
@@ -683,6 +620,71 @@ footer {
     transform:translate(2px,-2px);
 
 }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+
+footer {
+  position: relative;
+  z-index: 1;
+
+  padding: 2.8rem 3.2rem;
+
+  border-top: 1px solid rgba(61,214,224,0.05);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 300;
+  color: rgba(232,242,255,0.45);
+  letter-spacing: 0.06em;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.footer-left span:last-child {
+  color: rgba(232,242,255,0.22);
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.3rem;
+  flex-wrap: wrap;
+}
+
+.footer-socials a,
+.footer-right a {
+  color: rgba(232,242,255,0.45);
+  text-decoration: none;
+  transition: color .25s ease;
+}
+
+.footer-socials a:hover,
+.footer-right a:hover {
+  color: var(--glow);
+}
+
+@media (max-width:768px){
+
+  footer{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .footer-socials{
+    justify-content:center;
+  }
+
+}
+
 
     /* ── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 768px) {
