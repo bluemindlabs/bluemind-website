@@ -533,19 +533,68 @@
     }
 
     /* ── FOOTER ─────────────────────────────────────── */
-    footer {
-      position: relative; z-index: 1;
-      padding: 2.8rem 3.2rem;
-      border-top: 1px solid rgba(61,214,224,0.05);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      font-weight: 300;
-      color: rgba(232,242,255,0.14);
-      letter-spacing: 0.06em;
-    }
+
+footer {
+  position: relative;
+  z-index: 1;
+
+  padding: 2.8rem 3.2rem;
+
+  border-top: 1px solid rgba(61,214,224,0.05);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 300;
+  color: rgba(232,242,255,0.45);
+  letter-spacing: 0.06em;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.footer-left span:last-child {
+  color: rgba(232,242,255,0.22);
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.3rem;
+  flex-wrap: wrap;
+}
+
+.footer-socials a,
+.footer-right a {
+  color: rgba(232,242,255,0.45);
+  text-decoration: none;
+  transition: color .25s ease;
+}
+
+.footer-socials a:hover,
+.footer-right a:hover {
+  color: var(--glow);
+}
+
+@media (max-width:768px){
+
+  footer{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .footer-socials{
+    justify-content:center;
+  }
+
+}
 
     /* ── REVEAL ─────────────────────────────────────── */
     .reveal {
@@ -802,6 +851,64 @@
 
   </div>
 </section>
+
+    <!-- APP -->
+<section id="app">
+  <div class="si">
+
+    <p class="sec-lbl reveal">BlueMind App</p>
+
+    <h2 class="sec-title reveal">
+      Every observation<br>
+      <em>helps tell the story.</em>
+    </h2>
+
+    <p class="sec-body reveal">
+      The BlueMind app allows anyone to document marine debris through
+      simple, geotagged photo uploads. Every report contributes to a
+      growing community map that makes pollution more visible and easier
+      to understand.
+    </p>
+
+    <div class="feat-grid">
+
+      <div class="fc reveal d1">
+        <div class="fc-n">01</div>
+        <h3 class="fc-t">Report</h3>
+        <p class="fc-b">
+          Upload photos of marine debris and record where it was found.
+        </p>
+      </div>
+
+      <div class="fc reveal d2">
+        <div class="fc-n">02</div>
+        <h3 class="fc-t">Explore</h3>
+        <p class="fc-b">
+          View a community-generated map of reported pollution across
+          beaches, rivers, lakes, and coastlines.
+        </p>
+      </div>
+
+      <div class="fc reveal d3">
+        <div class="fc-n">03</div>
+        <h3 class="fc-t">Contribute</h3>
+        <p class="fc-b">
+          Every upload helps create a larger picture of environmental
+          conditions and encourages local action.
+        </p>
+      </div>
+
+    </div>
+
+    <a href="YOUR_APP_LINK_HERE"
+       target="_blank"
+       class="hero-cta"
+       style="margin-top:4rem;">
+       Open the App
+    </a>
+
+  </div>
+</section>
     
     <!-- SCIENCE -->
     <section id="science">
@@ -844,29 +951,7 @@
       </div>
     </section>
 
-<!-- CURRENT STATUS -->
-<section id="status">
-  <div class="si">
 
-    <p class="sec-lbl reveal">Current Status</p>
-
-    <h2 class="sec-title reveal">
-      BlueMind is currently<br>
-      <em>in active development.</em>
-    </h2>
-
-    <p class="sec-body reveal">
-      Over the past month we have been working with environmental data,
-      satellite imagery, ocean modeling, and expert communities to better
-      understand how pollution moves through marine systems.
-    </p>
-
-    <p class="sec-body reveal" style="margin-top:1.5rem;">
-      Our first public demonstration is planned for June 30, 2026.
-    </p>
-
-  </div>
-</section>
     
     <!-- CONTACT -->
     <section id="contact">
@@ -904,9 +989,23 @@
 </a>
 
   <footer>
-    <span>&#169; 2025 BlueMind AI</span>
-    <span>one.raag@gmail.com</span>
-  </footer>
+  <div class="footer-left">
+    <span>&#169; 2026 BlueMind</span>
+    <span>Understanding the ocean. Together.</span>
+  </div>
+
+  <div class="footer-socials">
+    <a href="https://instagram.com/bluemindocean" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://x.com/bluemindocean" target="_blank" rel="noopener">X</a>
+    <a href="https://youtube.com/@bluemindoceanai" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://tiktok.com/@bluemindocean" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://facebook.com/bluemind" target="_blank" rel="noopener">Facebook</a>
+  </div>
+
+  <div class="footer-right">
+    <a href="mailto:preeti@bluemindlabs.ai">preeti@bluemindlabs.ai</a>
+  </div>
+</footer>
 
   <script>
   /* =====================================================
@@ -1302,10 +1401,10 @@
     { id:'status-quo',  label:'Status Quo' },
     { id:'mission',     label:'Mission'    },
     { id:'platform',    label:'Platform'   },
+    { id:'app',         label:'App'        },
     { id:'science',     label:'Science'    },
     { id:'what-we-do',  label:'Depth'      },
     { id:'impact',      label:'Impact'     },
-    { id:'status',      label:'Status'     },
     { id:'contact',     label:'Contact'    },
   ];
 
