@@ -607,52 +607,81 @@ footer {
     .d2 { transition-delay: 0.16s; }
     .d3 { transition-delay: 0.26s; }
 
-.floating-buttons{
+/* Floating Links */
+
+.floating-links{
 
     position:fixed;
 
-    bottom:2rem;
+    right:2.5rem;
 
-    right:2rem;
+    bottom:2.5rem;
 
     display:flex;
 
     flex-direction:column;
 
-    gap:.8rem;
+    align-items:flex-end;
+
+    gap:1rem;
 
     z-index:999;
 
 }
 
-    
-    /* ── APP FLOATING BUTTON ─────────────────────────── */
-.app-fab {
-  position: fixed;
-  bottom: 2.4rem;
-  right: 2.4rem;
-  z-index: 999;
+.floating-link{
 
-  padding: 0.9rem 1.4rem;
-  border: 1px solid rgba(61,214,224,0.35);
-  background: rgba(3,14,25,0.65);
-  backdrop-filter: blur(10px);
+    display:flex;
 
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
+    align-items:center;
 
-  color: rgba(61,214,224,0.9);
-  text-decoration: none;
+    gap:.6rem;
 
-  transition: all 0.3s ease;
+    text-decoration:none;
+
+    font-family:var(--mono);
+
+    font-size:.63rem;
+
+    letter-spacing:.22em;
+
+    text-transform:uppercase;
+
+    color:rgba(232,242,255,.62);
+
+    transition:
+        color .3s,
+        transform .3s,
+        opacity .3s;
+
 }
 
-.app-fab:hover {
-  background: rgba(61,214,224,0.08);
-  border-color: rgba(61,214,224,0.6);
-  transform: translateY(-2px);
+.floating-link span{
+
+    font-size:.75rem;
+
+    opacity:.45;
+
+    transition:
+        transform .3s,
+        opacity .3s;
+
+}
+
+.floating-link:hover{
+
+    color:var(--glow);
+
+    transform:translateX(-3px);
+
+}
+
+.floating-link:hover span{
+
+    opacity:1;
+
+    transform:translate(2px,-2px);
+
 }
 
     /* ── RESPONSIVE ─────────────────────────────────── */
@@ -1062,26 +1091,28 @@ footer {
 
   </main>
 
-  <!-- FLOATING APP BUTTON + dashboard -->
-<div class="floating-buttons">
+<!--floating buttons --> 
+<div class="floating-links">
 
-  <a href="https://forecast.bluemind.si/"
-     target="_blank"
-     rel="noopener"
-     class="floating-button">
+    <a href="https://forecast.bluemind.si/"
+       target="_blank"
+       rel="noopener"
+       class="floating-link">
 
-     Research Dashboard
+        Dashboard
+        <span>↗</span>
 
-  </a>
+    </a>
 
-  <a href="https://bluemind-app.vercel.app/"
-     target="_blank"
-     rel="noopener"
-     class="floating-button">
+    <a href="https://bluemind-app.vercel.app/"
+       target="_blank"
+       rel="noopener"
+       class="floating-link">
 
-     Community App
+        App
+        <span>↗</span>
 
-  </a>
+    </a>
 
 </div>
 
