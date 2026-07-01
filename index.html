@@ -607,7 +607,25 @@ footer {
     .d2 { transition-delay: 0.16s; }
     .d3 { transition-delay: 0.26s; }
 
+.floating-buttons{
 
+    position:fixed;
+
+    bottom:2rem;
+
+    right:2rem;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.8rem;
+
+    z-index:999;
+
+}
+
+    
     /* ── APP FLOATING BUTTON ─────────────────────────── */
 .app-fab {
   position: fixed;
@@ -909,6 +927,67 @@ footer {
 
   </div>
 </section>
+
+<!-- DASHBOARD -->
+<section id="dashboard">
+  <div class="si">
+
+    <p class="sec-lbl reveal">Ocean Intelligence Dashboard</p>
+
+    <h2 class="sec-title reveal">
+      Exploring the ocean<br>
+      <em>from above.</em>
+    </h2>
+
+    <p class="sec-body reveal">
+      The BlueMind dashboard brings together satellite imagery,
+      environmental datasets, and experimental visualizations to
+      support research into marine pollution. It is designed as a
+      research interface for exploring large-scale environmental
+      patterns alongside community observations.
+    </p>
+
+    <div class="feat-grid">
+
+      <div class="fc reveal d1">
+        <div class="fc-n">01</div>
+        <h3 class="fc-t">Satellite Data</h3>
+        <p class="fc-b">
+          Explore publicly available satellite imagery and environmental
+          datasets through an interactive interface.
+        </p>
+      </div>
+
+      <div class="fc reveal d2">
+        <div class="fc-n">02</div>
+        <h3 class="fc-t">Predictions</h3>
+        <p class="fc-b">
+          View experimental visualizations that explore how pollution
+          may move under changing environmental conditions.
+        </p>
+      </div>
+
+      <div class="fc reveal d3">
+        <div class="fc-n">03</div>
+        <h3 class="fc-t">Research</h3>
+        <p class="fc-b">
+          Investigate relationships across multiple environmental
+          datasets to better understand marine systems.
+        </p>
+      </div>
+
+    </div>
+
+    <a href="YOUR_DASHBOARD_LINK"
+       target="_blank"
+       rel="noopener"
+       class="hero-cta"
+       style="margin-top:4rem;">
+      Open Dashboard →
+    </a>
+
+  </div>
+</section>
     
     <!-- SCIENCE -->
     <section id="science">
@@ -983,16 +1062,28 @@ footer {
 
   </main>
 
-  <!-- FLOATING APP BUTTON -->
-<a href="https://bluemind-app.vercel.app" class="app-fab" target="_blank">
-  Open App →
-</a>
+  <!-- FLOATING APP BUTTON + dashboard -->
+<div class="floating-buttons">
 
-  <footer>
-  <div class="footer-left">
-    <span>&#169; 2026 BlueMind</span>
-    <span>Understanding the ocean. Together.</span>
-  </div>
+  <a href="https://forecast.bluemind.si/"
+     target="_blank"
+     rel="noopener"
+     class="floating-button">
+
+     Research Dashboard
+
+  </a>
+
+  <a href="https://bluemind-app.vercel.app/"
+     target="_blank"
+     rel="noopener"
+     class="floating-button">
+
+     Community App
+
+  </a>
+
+</div>
 
   <div class="footer-socials">
     <a href="https://instagram.com/bluemindocean" target="_blank" rel="noopener">Instagram</a>
@@ -1402,6 +1493,7 @@ footer {
     { id:'mission',     label:'Mission'    },
     { id:'platform',    label:'Platform'   },
     { id:'app',         label:'App'        },
+    { id:'dashboard',   label:'Dashboard'  },
     { id:'science',     label:'Science'    },
     { id:'what-we-do',  label:'Depth'      },
     { id:'impact',      label:'Impact'     },
