@@ -1596,6 +1596,27 @@
       color: var(--on-dark-3);
     }
 
+    .footer__bottom a {
+      color: var(--on-dark-2);
+      transition: color var(--t-fast) var(--ease);
+    }
+
+    .footer__bottom a:hover {
+      color: #fff;
+    }
+
+    .form__note {
+      font-size: .8rem;
+      color: var(--ink-3);
+      text-align: center;
+    }
+
+    .form__note a {
+      color: var(--marine);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     /* =====================================================================
        12. REVEAL
        ===================================================================== */
@@ -2300,6 +2321,8 @@
             </div>
             <button class="btn btn--primary" type="submit" style="justify-content:center;">Send message <span
                 class="arrow" aria-hidden="true">→</span></button>
+            <p class="form__note">We use your details only to reply. See our <a href="privacy.html">privacy
+                policy</a>.</p>
           </form>
         </div>
       </div>
@@ -2370,7 +2393,7 @@
       </div>
 
       <div class="footer__bottom">
-        <span>© 2026 Bluemind</span>
+        <span>© 2026 Bluemind · <a href="privacy.html">Privacy policy</a> · <a href="delete-account.html">Delete my data</a></span>
         <span>Environmental intelligence · In active development</span>
       </div>
     </div>

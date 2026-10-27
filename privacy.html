@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How Bluemind handles personal data on this website.">
+  <meta name="theme-color" content="#071A2B">
+  <title>Privacy Policy — Bluemind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* Shared tokens and components mirror index.html; only what this page uses is carried over. */
+
+    /* =====================================================================
+       1. RESET
+       ===================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--fs-body);
+      line-height: 1.62;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: var(--teal-100);
+      color: var(--navy);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* =====================================================================
+       2. TOKENS
+       ===================================================================== */
+    :root {
+      --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+
+      --fs-body: clamp(1rem, .96rem + .18vw, 1.075rem);
+      --fs-lead: clamp(1.08rem, 1rem + .42vw, 1.32rem);
+      --fs-h1: clamp(2.6rem, 1.55rem + 4.4vw, 5.1rem);
+      --fs-h2: clamp(1.35rem, 1.15rem + .8vw, 1.75rem);
+      --fs-eyebrow: .72rem;
+      --fs-small: .875rem;
+
+      --lh-tight: 1.06;
+      --ls-tight: -.028em;
+      --ls-eyebrow: .16em;
+
+      --midnight: #04121F;
+      --navy: #071B33;
+      --ocean: #0A4F83;
+      --marine: #14669E;
+      --sky: #7FC3E8;
+      --ice: #F2F9FD;
+
+      --teal: #2E9E9B;
+      --teal-100: #D6EDEB;
+
+      --ink: #0A1E30;
+      --ink-2: #3C566E;
+      --ink-3: #6A8399;
+
+      --bg: #FFFFFF;
+      --surface: #EFF6FB;
+
+      --line: #DEE9F1;
+      --line-2: #C8DAE7;
+      --line-dark: rgba(160, 210, 240, .16);
+
+      --on-dark: #F2F7FA;
+      --on-dark-2: rgba(233, 242, 247, .68);
+      --on-dark-3: rgba(233, 242, 247, .46);
+
+      --r-md: 6px;
+      --r-pill: 100px;
+
+      --gutter: clamp(1.25rem, .7rem + 2.4vw, 2.75rem);
+      --maxw: 1220px;
+      --maxw-text: 68ch;
+
+      --ease: cubic-bezier(.22, .61, .36, 1);
+      --t-fast: 160ms;
+      --t-mid: 260ms;
+
+      --header-h: 76px;
+    }
+
+    /* =====================================================================
+       3. LAYOUT + TYPE
+       ===================================================================== */
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .eyebrow {
+      display: block;
+      font-size: var(--fs-eyebrow);
+      font-weight: 500;
+      letter-spacing: var(--ls-eyebrow);
+      text-transform: uppercase;
+      color: var(--on-dark-3);
+      margin-bottom: 1.5rem;
+    }
+
+    .serif {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -.01em;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: .75rem;
+      left: .75rem;
+      z-index: 200;
+      padding: .7rem 1.1rem;
+      background: var(--bg);
+      color: var(--ink);
+      border: 1px solid var(--line-2);
+      border-radius: var(--r-md);
+      font-size: .88rem;
+      font-weight: 500;
+      transform: translateY(-160%);
+      transition: transform var(--t-mid) var(--ease);
+    }
+
+    .skip-link:focus-visible {
+      transform: translateY(0);
+    }
+
+    /* =====================================================================
+       4. HEADER — always solid on this page
+       ===================================================================== */
+    .header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 110;
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, .86);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header__inner {
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: .62rem;
+      font-size: 1.06rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--ink);
+    }
+
+    .logo__mark {
+      width: 22px;
+      height: 22px;
+      flex: none;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem 1rem;
+      border: 1px solid var(--line-2);
+      border-radius: var(--r-pill);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+    }
+
+    .back-link:hover {
+      border-color: var(--marine);
+      color: var(--ink);
+    }
+
+    /* =====================================================================
+       5. PAGE HEAD
+       ===================================================================== */
+    .page-head {
+      background:
+        radial-gradient(90% 60% at 78% 22%, rgba(11, 130, 201, .28) 0%, transparent 62%),
+        linear-gradient(180deg, var(--midnight) 0%, #072744 46%, var(--ocean) 100%);
+      color: var(--on-dark);
+      padding-top: calc(var(--header-h) + clamp(3.5rem, 2rem + 5vw, 6.5rem));
+      padding-bottom: clamp(3rem, 2rem + 4vw, 5.5rem);
+    }
+
+    .page-head h1 {
+      font-size: var(--fs-h1);
+      font-weight: 500;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-tight);
+    }
+
+    .page-head .serif {
+      color: var(--sky);
+    }
+
+    .page-head p {
+      margin-top: 1.5rem;
+      max-width: var(--maxw-text);
+      font-size: var(--fs-lead);
+      line-height: 1.55;
+      color: var(--on-dark-2);
+    }
+
+    .page-head .updated {
+      margin-top: 2rem;
+      font-size: var(--fs-small);
+      color: var(--on-dark-3);
+    }
+
+    /* =====================================================================
+       6. POLICY BODY
+       ===================================================================== */
+    .policy {
+      background: linear-gradient(180deg, #FFFFFF 0%, var(--ice) 70%, var(--surface) 100%);
+      padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+    }
+
+    .policy__body {
+      max-width: var(--maxw-text);
+    }
+
+    .policy section+section {
+      margin-top: 2.75rem;
+      padding-top: 2.75rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .policy h2 {
+      font-size: var(--fs-h2);
+      font-weight: 500;
+      letter-spacing: -.018em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .policy p,
+    .policy li {
+      color: var(--ink-2);
+    }
+
+    .policy p+p,
+    .policy p+ul,
+    .policy ul+p {
+      margin-top: 1rem;
+    }
+
+    .policy ul {
+      padding-left: 1.2rem;
+    }
+
+    .policy li+li {
+      margin-top: .5rem;
+    }
+
+    .policy strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .policy a {
+      color: var(--marine);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--line-2);
+      transition: text-decoration-color var(--t-fast) var(--ease);
+    }
+
+    .policy a:hover {
+      text-decoration-color: currentColor;
+    }
+
+    /* =====================================================================
+       7. FOOTER
+       ===================================================================== */
+    .footer {
+      background: linear-gradient(180deg, #0A2A47 0%, var(--navy) 55%, var(--midnight) 100%);
+      color: var(--on-dark);
+      padding-block: clamp(3rem, 5vw, 4.5rem) 2.5rem;
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      padding-bottom: 2.75rem;
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .footer .logo {
+      color: var(--on-dark);
+    }
+
+    .footer__desc {
+      margin-top: 1rem;
+      font-size: .92rem;
+      line-height: 1.6;
+      color: var(--on-dark-3);
+      max-width: 34ch;
+    }
+
+    .footer__col h4 {
+      font-size: var(--fs-eyebrow);
+      font-weight: 500;
+      letter-spacing: var(--ls-eyebrow);
+      text-transform: uppercase;
+      color: var(--on-dark-3);
+      margin-bottom: 1.1rem;
+    }
+
+    .footer__col ul {
+      list-style: none;
+    }
+
+    .footer__col li+li {
+      margin-top: .65rem;
+    }
+
+    .footer__col a,
+    .footer__bottom a {
+      font-size: .93rem;
+      color: var(--on-dark-2);
+      transition: color var(--t-fast) var(--ease);
+    }
+
+    .footer__col a:hover,
+    .footer__bottom a:hover {
+      color: #fff;
+    }
+
+    .footer__bottom {
+      margin-top: 1.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .75rem;
+      font-size: .82rem;
+      color: var(--on-dark-3);
+    }
+
+    .footer__bottom a {
+      font-size: inherit;
+    }
+
+    /* =====================================================================
+       8. RESPONSIVE
+       ===================================================================== */
+    @media (max-width: 1024px) {
+      :root {
+        --header-h: 68px;
+      }
+
+      .footer__top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer__brandcol {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .footer__top {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.html" class="logo" aria-label="Bluemind — home">
+        <svg class="logo__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.4" />
+          <path d="M2.9 9.6h18.2M2.9 14.4h18.2" stroke="currentColor" stroke-width="1.1" opacity=".55" />
+          <path d="M12 2.75c2.6 2.6 3.9 5.7 3.9 9.25S14.6 18.65 12 21.25c-2.6-2.6-3.9-5.7-3.9-9.25S9.4 5.35 12 2.75Z"
+            stroke="currentColor" stroke-width="1.1" opacity=".55" />
+        </svg>
+        <span>Bluemind</span>
+      </a>
+      <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to site</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <div class="page-head">
+      <div class="wrap">
+        <span class="eyebrow">Legal</span>
+        <h1>Privacy <span class="serif">policy.</span></h1>
+        <p>This page explains what personal data this website collects, why, and what you can do about it. We
+          collect as little as we can.</p>
+        <p class="updated">Last updated: 27 October 2026</p>
+      </div>
+    </div>
+
+    <div class="policy">
+      <div class="wrap">
+        <div class="policy__body">
+
+          <section>
+            <h2>Who we are</h2>
+            <p>This website is run by Bluemind, which is building an environmental intelligence layer for the
+              ocean. In this policy, “Bluemind”, “we” and “us” mean the team responsible for this site and the
+              data controller for any personal data it collects.</p>
+            <p>This policy covers this website only. Our community app and intelligence interface are separate
+              services and may have their own terms.</p>
+          </section>
+
+          <section>
+            <h2>What we collect</h2>
+            <p><strong>When you use the contact form.</strong> We receive the name, organisation, email address
+              and message you enter. Organisation is optional; the other fields are required so we can reply.</p>
+            <p><strong>When you visit the site.</strong> Like any website, the servers that deliver these pages
+              see your IP address and basic technical details such as your browser type. This is needed to send
+              the page to you.</p>
+            <p>We do not use analytics, advertising trackers or cookies on this site, and we do not build
+              profiles of visitors.</p>
+          </section>
+
+          <section>
+            <h2>How we use it</h2>
+            <ul>
+              <li>To read and reply to messages you send us through the contact form.</li>
+              <li>To keep a record of conversations about research, partnerships and collaboration.</li>
+              <li>To deliver the website and keep it secure.</li>
+            </ul>
+            <p>We do not sell your data, and we do not use your contact details for marketing unless you ask us
+              to keep you updated.</p>
+          </section>
+
+          <section>
+            <h2>Legal basis</h2>
+            <p>Where data protection law such as the GDPR applies, we rely on our <strong>legitimate
+                interest</strong> in responding to enquiries and running this website, and, where you ask us to
+              do something before entering into an agreement with you, on taking <strong>steps at your
+                request</strong>.</p>
+          </section>
+
+          <section>
+            <h2>Services we use</h2>
+            <p>A small number of third parties process data on our behalf so the site can work:</p>
+            <ul>
+              <li><strong>Formspree</strong> receives contact form submissions and forwards them to us. See
+                <a href="https://formspree.io/legal/privacy-policy/" target="_blank"
+                  rel="noopener noreferrer">Formspree’s privacy policy</a>.</li>
+              <li><strong>Google Fonts</strong> serves the typefaces on this page, which means your browser
+                requests them from Google and Google receives your IP address. See
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google’s
+                  privacy policy</a>.</li>
+              <li>Our <strong>hosting provider</strong> delivers the pages and may keep short-lived server logs.
+              </li>
+            </ul>
+            <p>Some of these providers may process data outside your country, including outside the European
+              Economic Area. Where that happens, they rely on recognised safeguards such as standard contractual
+              clauses.</p>
+          </section>
+
+          <section>
+            <h2>How long we keep it</h2>
+            <p>We keep contact messages for as long as the conversation is active and for up to 24 months
+              afterwards, unless you ask us to delete them sooner or we need to keep them for a legal reason.</p>
+          </section>
+
+          <section>
+            <h2>Your rights</h2>
+            <p>Depending on where you live, you may have the right to:</p>
+            <ul>
+              <li>access the personal data we hold about you;</li>
+              <li>correct it if it is wrong;</li>
+              <li>ask us to delete it;</li>
+              <li>object to or restrict how we use it;</li>
+              <li>receive a copy of it in a portable format.</li>
+            </ul>
+            <p>To delete your account and data, use our <a href="delete-account.html">deletion request
+                form</a>. For any other request, contact us as described below. You can also complain to your
+              local data protection authority.</p>
+          </section>
+
+          <section>
+            <h2>Changes to this policy</h2>
+            <p>If we change how we handle personal data, we will update this page and the date at the top.</p>
+          </section>
+
+          <section>
+            <h2>Contact</h2>
+            <p>For any privacy question or request, use the <a href="index.html#contact">contact form</a> and
+              mention “privacy” in your message.</p>
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__brandcol">
+          <a href="index.html" class="logo">
+            <svg class="logo__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.4" />
+              <path d="M2.9 9.6h18.2M2.9 14.4h18.2" stroke="currentColor" stroke-width="1.1" opacity=".55" />
+              <path d="M12 2.75c2.6 2.6 3.9 5.7 3.9 9.25S14.6 18.65 12 21.25c-2.6-2.6-3.9-5.7-3.9-9.25S9.4 5.35 12 2.75Z"
+                stroke="currentColor" stroke-width="1.1" opacity=".55" />
+            </svg>
+            <span>Bluemind</span>
+          </a>
+          <p class="footer__desc">Building an environmental intelligence layer for the ocean.</p>
+        </div>
+
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html#why">Why Bluemind</a></li>
+            <li><a href="index.html#platform">Platform</a></li>
+            <li><a href="index.html#science">Approach</a></li>
+            <li><a href="index.html#future">Future initiatives</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="https://bluemind-web.vercel.app/" target="_blank" rel="noopener noreferrer">Community app ↗</a>
+            </li>
+            <li><a href="https://forecast.bluemind.si/" target="_blank" rel="noopener noreferrer">Intelligence interface
+                ↗</a></li>
+            <li><a href="https://www.linkedin.com/in/preetiguptabluemind" target="_blank"
+                rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://instagram.com/bluemindocean" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </li>
+            <li><a href="https://x.com/bluemindocean" target="_blank" rel="noopener noreferrer">X</a></li>
+            <li><a href="https://youtube.com/@bluemindoceanai" target="_blank" rel="noopener noreferrer">YouTube</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 Bluemind · <a href="privacy.html" aria-current="page">Privacy policy</a> · <a href="delete-account.html">Delete my data</a></span>
+        <span>Environmental intelligence · In active development</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

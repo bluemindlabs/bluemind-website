@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ask Bluemind to delete your account and the personal data we hold about you.">
+  <meta name="theme-color" content="#071A2B">
+  <title>Delete Your Data — Bluemind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* Shared tokens and components mirror index.html; only what this page uses is carried over. */
+
+    /* =====================================================================
+       1. RESET
+       ===================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--fs-body);
+      line-height: 1.62;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: var(--teal-100);
+      color: var(--navy);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* =====================================================================
+       2. TOKENS
+       ===================================================================== */
+    :root {
+      --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+
+      --fs-body: clamp(1rem, .96rem + .18vw, 1.075rem);
+      --fs-lead: clamp(1.08rem, 1rem + .42vw, 1.32rem);
+      --fs-h1: clamp(2.6rem, 1.55rem + 4.4vw, 5.1rem);
+      --fs-h2: clamp(1.35rem, 1.15rem + .8vw, 1.75rem);
+      --fs-eyebrow: .72rem;
+      --fs-small: .875rem;
+
+      --lh-tight: 1.06;
+      --ls-tight: -.028em;
+      --ls-eyebrow: .16em;
+
+      --midnight: #04121F;
+      --navy: #071B33;
+      --ocean: #0A4F83;
+      --marine: #14669E;
+      --sky: #7FC3E8;
+      --ice: #F2F9FD;
+
+      --teal: #2E9E9B;
+      --teal-100: #D6EDEB;
+
+      --ink: #0A1E30;
+      --ink-2: #3C566E;
+      --ink-3: #6A8399;
+
+      --bg: #FFFFFF;
+      --surface: #EFF6FB;
+
+      --line: #DEE9F1;
+      --line-2: #C8DAE7;
+      --line-dark: rgba(160, 210, 240, .16);
+
+      --on-dark: #F2F7FA;
+      --on-dark-2: rgba(233, 242, 247, .68);
+      --on-dark-3: rgba(233, 242, 247, .46);
+
+      --r-md: 6px;
+      --r-pill: 100px;
+
+      --gutter: clamp(1.25rem, .7rem + 2.4vw, 2.75rem);
+      --maxw: 1220px;
+      --maxw-text: 68ch;
+
+      --ease: cubic-bezier(.22, .61, .36, 1);
+      --t-fast: 160ms;
+      --t-mid: 260ms;
+
+      --header-h: 76px;
+    }
+
+    /* =====================================================================
+       3. LAYOUT + TYPE
+       ===================================================================== */
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .eyebrow {
+      display: block;
+      font-size: var(--fs-eyebrow);
+      font-weight: 500;
+      letter-spacing: var(--ls-eyebrow);
+      text-transform: uppercase;
+      color: var(--on-dark-3);
+      margin-bottom: 1.5rem;
+    }
+
+    .serif {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -.01em;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: .75rem;
+      left: .75rem;
+      z-index: 200;
+      padding: .7rem 1.1rem;
+      background: var(--bg);
+      color: var(--ink);
+      border: 1px solid var(--line-2);
+      border-radius: var(--r-md);
+      font-size: .88rem;
+      font-weight: 500;
+      transform: translateY(-160%);
+      transition: transform var(--t-mid) var(--ease);
+    }
+
+    .skip-link:focus-visible {
+      transform: translateY(0);
+    }
+
+    /* =====================================================================
+       4. HEADER — always solid on this page
+       ===================================================================== */
+    .header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 110;
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, .86);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header__inner {
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: .62rem;
+      font-size: 1.06rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--ink);
+    }
+
+    .logo__mark {
+      width: 22px;
+      height: 22px;
+      flex: none;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem 1rem;
+      border: 1px solid var(--line-2);
+      border-radius: var(--r-pill);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+    }
+
+    .back-link:hover {
+      border-color: var(--marine);
+      color: var(--ink);
+    }
+
+    /* =====================================================================
+       5. PAGE HEAD
+       ===================================================================== */
+    .page-head {
+      background:
+        radial-gradient(90% 60% at 78% 22%, rgba(11, 130, 201, .28) 0%, transparent 62%),
+        linear-gradient(180deg, var(--midnight) 0%, #072744 46%, var(--ocean) 100%);
+      color: var(--on-dark);
+      padding-top: calc(var(--header-h) + clamp(3.5rem, 2rem + 5vw, 6.5rem));
+      padding-bottom: clamp(3rem, 2rem + 4vw, 5.5rem);
+    }
+
+    .page-head h1 {
+      font-size: var(--fs-h1);
+      font-weight: 500;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-tight);
+    }
+
+    .page-head .serif {
+      color: var(--sky);
+    }
+
+    .page-head p {
+      margin-top: 1.5rem;
+      max-width: var(--maxw-text);
+      font-size: var(--fs-lead);
+      line-height: 1.55;
+      color: var(--on-dark-2);
+    }
+
+    .page-head .updated {
+      margin-top: 2rem;
+      font-size: var(--fs-small);
+      color: var(--on-dark-3);
+    }
+
+    /* =====================================================================
+       6. POLICY BODY
+       ===================================================================== */
+    .policy {
+      background: linear-gradient(180deg, #FFFFFF 0%, var(--ice) 70%, var(--surface) 100%);
+      padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+    }
+
+    .policy__body {
+      max-width: var(--maxw-text);
+    }
+
+    .policy section+section {
+      margin-top: 2.75rem;
+      padding-top: 2.75rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .policy h2 {
+      font-size: var(--fs-h2);
+      font-weight: 500;
+      letter-spacing: -.018em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .policy p,
+    .policy li {
+      color: var(--ink-2);
+    }
+
+    .policy p+p,
+    .policy p+ul,
+    .policy ul+p {
+      margin-top: 1rem;
+    }
+
+    .policy ul {
+      padding-left: 1.2rem;
+    }
+
+    .policy li+li {
+      margin-top: .5rem;
+    }
+
+    .policy strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .policy a {
+      color: var(--marine);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--line-2);
+      transition: text-decoration-color var(--t-fast) var(--ease);
+    }
+
+    .policy a:hover {
+      text-decoration-color: currentColor;
+    }
+
+    /* =====================================================================
+       7. REQUEST FORM
+       ===================================================================== */
+    .request {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      background: rgba(255, 255, 255, .82);
+      backdrop-filter: blur(6px);
+      padding: clamp(1.6rem, 1rem + 1.6vw, 2.4rem);
+    }
+
+    .form {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .form__row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    .field {
+      display: grid;
+      gap: .45rem;
+      border: 0;
+    }
+
+    .field label,
+    .field legend {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .01em;
+      color: var(--ink-2);
+    }
+
+    .field legend {
+      margin-bottom: .45rem;
+    }
+
+    .field input[type="text"],
+    .field input[type="email"],
+    .field textarea {
+      width: 100%;
+      padding: .8rem .95rem;
+      background: var(--bg);
+      border: 1px solid var(--line-2);
+      border-radius: var(--r-md);
+      font: inherit;
+      font-size: .95rem;
+      color: var(--ink);
+      transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.55;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #A3B2BE;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(29, 110, 156, .12);
+    }
+
+    .choice {
+      display: flex;
+      align-items: flex-start;
+      gap: .65rem;
+      font-size: .93rem;
+      line-height: 1.45;
+      color: var(--ink-2);
+      cursor: pointer;
+    }
+
+    .choice+.choice {
+      margin-top: .55rem;
+    }
+
+    .choice input {
+      flex: none;
+      width: 1.05rem;
+      height: 1.05rem;
+      margin-top: .12rem;
+      accent-color: var(--marine);
+    }
+
+    .choice--confirm {
+      padding: .9rem 1rem;
+      border: 1px solid var(--line-2);
+      border-radius: var(--r-md);
+      background: var(--ice);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: .85rem 1.5rem;
+      border: 1px solid transparent;
+      border-radius: var(--r-md);
+      font: inherit;
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: -.005em;
+      cursor: pointer;
+      transition: background var(--t-fast) var(--ease);
+    }
+
+    .btn--primary {
+      background: linear-gradient(135deg, var(--marine) 0%, var(--ocean) 100%);
+      color: #fff;
+    }
+
+    .btn--primary:hover {
+      background: linear-gradient(135deg, var(--ocean) 0%, #0E5280 100%);
+    }
+
+    .form__note {
+      font-size: .8rem;
+      color: var(--ink-3);
+      text-align: center;
+    }
+
+    .steps {
+      list-style: none;
+      padding-left: 0 !important;
+      counter-reset: step;
+    }
+
+    .steps li {
+      position: relative;
+      padding-left: 2.4rem;
+      counter-increment: step;
+    }
+
+    .steps li+li {
+      margin-top: 1rem !important;
+    }
+
+    .steps li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: .05rem;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      color: var(--marine);
+    }
+
+    /* =====================================================================
+       8. FOOTER
+       ===================================================================== */
+    .footer {
+      background: linear-gradient(180deg, #0A2A47 0%, var(--navy) 55%, var(--midnight) 100%);
+      color: var(--on-dark);
+      padding-block: clamp(3rem, 5vw, 4.5rem) 2.5rem;
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      padding-bottom: 2.75rem;
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .footer .logo {
+      color: var(--on-dark);
+    }
+
+    .footer__desc {
+      margin-top: 1rem;
+      font-size: .92rem;
+      line-height: 1.6;
+      color: var(--on-dark-3);
+      max-width: 34ch;
+    }
+
+    .footer__col h4 {
+      font-size: var(--fs-eyebrow);
+      font-weight: 500;
+      letter-spacing: var(--ls-eyebrow);
+      text-transform: uppercase;
+      color: var(--on-dark-3);
+      margin-bottom: 1.1rem;
+    }
+
+    .footer__col ul {
+      list-style: none;
+    }
+
+    .footer__col li+li {
+      margin-top: .65rem;
+    }
+
+    .footer__col a,
+    .footer__bottom a {
+      font-size: .93rem;
+      color: var(--on-dark-2);
+      transition: color var(--t-fast) var(--ease);
+    }
+
+    .footer__col a:hover,
+    .footer__bottom a:hover {
+      color: #fff;
+    }
+
+    .footer__bottom {
+      margin-top: 1.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .75rem;
+      font-size: .82rem;
+      color: var(--on-dark-3);
+    }
+
+    .footer__bottom a {
+      font-size: inherit;
+    }
+
+    /* =====================================================================
+       9. RESPONSIVE
+       ===================================================================== */
+    @media (max-width: 1024px) {
+      :root {
+        --header-h: 68px;
+      }
+
+      .footer__top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer__brandcol {
+        grid-column: 1 / -1;
+      }
+
+      .request {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .form__row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .footer__top {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.html" class="logo" aria-label="Bluemind — home">
+        <svg class="logo__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.4" />
+          <path d="M2.9 9.6h18.2M2.9 14.4h18.2" stroke="currentColor" stroke-width="1.1" opacity=".55" />
+          <path d="M12 2.75c2.6 2.6 3.9 5.7 3.9 9.25S14.6 18.65 12 21.25c-2.6-2.6-3.9-5.7-3.9-9.25S9.4 5.35 12 2.75Z"
+            stroke="currentColor" stroke-width="1.1" opacity=".55" />
+        </svg>
+        <span>Bluemind</span>
+      </a>
+      <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to site</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <div class="page-head">
+      <div class="wrap">
+        <span class="eyebrow">Your data</span>
+        <h1>Delete your account <span class="serif">and data.</span></h1>
+        <p>Use this form to ask us to delete your Bluemind account and the personal data we hold about you. You
+          don’t need to give a reason.</p>
+      </div>
+    </div>
+
+    <div class="policy">
+      <div class="wrap">
+        <div class="request">
+
+          <div class="policy__body">
+            <section>
+              <h2>What happens next</h2>
+              <ol class="steps">
+                <li>We receive your request and reply to the email address you give us to confirm it’s really
+                  you. Please send the request from the address linked to your account.</li>
+                <li>Once confirmed, we delete your account and the personal data linked to it, including your
+                  profile, contributions tied to your identity and past messages with us.</li>
+                <li>We email you when it’s done. We aim to finish within 30 days.</li>
+              </ol>
+            </section>
+
+            <section>
+              <h2>Good to know</h2>
+              <ul>
+                <li>Deleting your account can’t be undone.</li>
+                <li>Observations you shared publicly may stay in the dataset in anonymised form, with nothing that
+                  identifies you.</li>
+                <li>We may keep a small record that you asked for deletion, and anything the law requires us to
+                  keep.</li>
+              </ul>
+              <p>Read more about how we handle data in our <a href="privacy.html">privacy policy</a>.</p>
+            </section>
+          </div>
+
+          <form class="panel form" action="https://formspree.io/f/xppaowpk" method="POST">
+            <input type="hidden" name="_subject" value="Account deletion">
+            <div class="form__row">
+              <div class="field">
+                <label for="d-name">Name</label>
+                <input id="d-name" type="text" name="name" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="d-email">Account email</label>
+                <input id="d-email" type="email" name="email" autocomplete="email" required>
+              </div>
+            </div>
+
+            <fieldset class="field">
+              <legend>Which service?</legend>
+              <label class="choice"><input type="checkbox" name="service" value="Community app"> Community
+                app</label>
+              <label class="choice"><input type="checkbox" name="service" value="Intelligence interface">
+                Intelligence interface</label>
+              <label class="choice"><input type="checkbox" name="service" value="Not sure"> Not sure</label>
+            </fieldset>
+
+            <fieldset class="field">
+              <legend>What should we delete?</legend>
+              <label class="choice"><input type="radio" name="request" value="Delete account and all data" checked>
+                My account and all my data</label>
+              <label class="choice"><input type="radio" name="request" value="Delete specific data only"> Only
+                specific data (tell us below)</label>
+            </fieldset>
+
+            <div class="field">
+              <label for="d-msg">Details <span style="color:var(--ink-3);font-weight:400">(optional)</span></label>
+              <textarea id="d-msg" name="message" rows="3"
+                placeholder="Username, or anything that helps us find your data"></textarea>
+            </div>
+
+            <label class="choice choice--confirm"><input type="checkbox" name="confirm"
+                value="I understand deletion is permanent" required> I understand that deleting my account is
+              permanent and can’t be undone.</label>
+
+            <button class="btn btn--primary" type="submit">Request deletion</button>
+            <p class="form__note">We’ll reply by email to confirm before deleting anything.</p>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__brandcol">
+          <a href="index.html" class="logo">
+            <svg class="logo__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.4" />
+              <path d="M2.9 9.6h18.2M2.9 14.4h18.2" stroke="currentColor" stroke-width="1.1" opacity=".55" />
+              <path d="M12 2.75c2.6 2.6 3.9 5.7 3.9 9.25S14.6 18.65 12 21.25c-2.6-2.6-3.9-5.7-3.9-9.25S9.4 5.35 12 2.75Z"
+                stroke="currentColor" stroke-width="1.1" opacity=".55" />
+            </svg>
+            <span>Bluemind</span>
+          </a>
+          <p class="footer__desc">Building an environmental intelligence layer for the ocean.</p>
+        </div>
+
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html#why">Why Bluemind</a></li>
+            <li><a href="index.html#platform">Platform</a></li>
+            <li><a href="index.html#science">Approach</a></li>
+            <li><a href="index.html#future">Future initiatives</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="https://bluemind-web.vercel.app/" target="_blank" rel="noopener noreferrer">Community app ↗</a>
+            </li>
+            <li><a href="https://forecast.bluemind.si/" target="_blank" rel="noopener noreferrer">Intelligence interface
+                ↗</a></li>
+            <li><a href="https://www.linkedin.com/in/preetiguptabluemind" target="_blank"
+                rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://instagram.com/bluemindocean" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </li>
+            <li><a href="https://x.com/bluemindocean" target="_blank" rel="noopener noreferrer">X</a></li>
+            <li><a href="https://youtube.com/@bluemindoceanai" target="_blank" rel="noopener noreferrer">YouTube</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 Bluemind · <a href="privacy.html">Privacy policy</a> · <a href="delete-account.html" aria-current="page">Delete my data</a></span>
+        <span>Environmental intelligence · In active development</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
